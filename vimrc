@@ -29,6 +29,7 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'w0rp/ale'
+Plug 'vim-airline/vim-airline'
 
 " -----------------------------------------------------------------------------
 call plug#end()
