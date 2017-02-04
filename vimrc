@@ -15,22 +15,20 @@ Plug 'othree/html5.vim'
 if version < 704
   Plug 'JulesWang/css.vim'
 endif
-Plug 'cakebaker/scss-syntax.vim'
 Plug 'stephpy/vim-yaml'
-Plug 'cespare/vim-toml'
 Plug 'rust-lang/rust.vim'
 Plug 'ekalinin/Dockerfile.vim'
 
 " function extensions
 Plug 'rhysd/committia.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'scrooloose/syntastic'
 Plug 'simnalamburt/vim-mundo'
 Plug 'tmhedberg/matchit'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'w0rp/ale'
 
 " -----------------------------------------------------------------------------
 call plug#end()
