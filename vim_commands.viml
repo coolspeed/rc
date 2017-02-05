@@ -1,0 +1,8 @@
+" vim:ft=vim:et:ts=2:sw=2:sts=2:
+
+" Let you can paste codes
+set paste
+
+" Set foldmethod as indent. Especially useful for python code
+set foldmethod=indent
+
