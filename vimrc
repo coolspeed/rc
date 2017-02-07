@@ -8,7 +8,7 @@ set nu!
 call plug#begin('~/.vim/plugged')
 " plugins ---------------------------------------------------------------------
 
-" syntax highlighters
+" Syntax highlighters
 Plug 'plasticboy/vim-markdown'
 Plug 'Jinja'
 Plug 'othree/html5.vim'
@@ -19,7 +19,7 @@ Plug 'stephpy/vim-yaml'
 Plug 'rust-lang/rust.vim'
 Plug 'ekalinin/Dockerfile.vim'
 
-" function extensions
+" Function extensions
 Plug 'rhysd/committia.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'simnalamburt/vim-mundo'
@@ -144,6 +144,7 @@ let g:vim_markdown_folding_disabled=1
 " Customize colors for Jinja syntax.
 hi def link jinjaVarBlock Comment
 
+" Quickfix window will open when something adds to it
 augroup vimrc
     autocmd QuickFixCmdPost * botright copen 8
 augroup END
