@@ -31,6 +31,7 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'w0rp/ale'
 Plug 'vim-airline/vim-airline'
 Plug 'taglist-plus'
+Plug 'skywind3000/asyncrun.vim'
 
 " -----------------------------------------------------------------------------
 call plug#end()
@@ -142,4 +143,8 @@ let g:vim_markdown_folding_disabled=1
 
 " Customize colors for Jinja syntax.
 hi def link jinjaVarBlock Comment
+
+augroup vimrc
+    autocmd QuickFixCmdPost * botright copen 8
+augroup END
 
