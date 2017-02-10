@@ -81,7 +81,7 @@ highlight Search term=inverse cterm=none ctermbg=cyan
 " Keep 80 columns and dense lines.
 set colorcolumn=81
 highlight ColorColumn term=underline cterm=underline ctermbg=none
-autocmd BufWinEnter * match Error /\%>80v.\+\|\s\+$\|^\s*\n\+\%$/
+"autocmd BufWinEnter * match Error /\%>80v.\+\|\s\+$\|^\s*\n\+\%$/
 
 " Some additional syntax highlighters.
 au! BufRead,BufNewFile *.wsgi setfiletype python
