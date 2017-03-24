@@ -129,11 +129,12 @@ autocmd VimEnter *
 \|endif
 
 " YouCompleteMe
-autocmd VimEnter *
-\ if exists('g:ycm_goto_buffer_command')
-\|  let g:ycm_goto_buffer_command = 'new-tab'
-\|  nnoremap <F12> :YcmCompleter GoToDefinition<CR>
-\|endif
+"autocmd VimEnter *
+"\ if exists('g:ycm_goto_buffer_command')
+"\|  let g:ycm_goto_buffer_command = 'new-tab'
+"\|  nnoremap <F12> :YcmCompleter GoToDefinition<CR>
+"\|endif
+nnoremap <F12> :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " Explore the directory of the current file by `:E`.
 cabbrev E e %:p:h
