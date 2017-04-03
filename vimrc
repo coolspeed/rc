@@ -32,6 +32,7 @@ Plug 'w0rp/ale'
 Plug 'vim-airline/vim-airline'
 Plug 'taglist-plus'
 Plug 'skywind3000/asyncrun.vim'
+Plug 'wincent/command-t'
 
 " -----------------------------------------------------------------------------
 call plug#end()
@@ -149,4 +150,7 @@ hi def link jinjaVarBlock Comment
 augroup vimrc
     autocmd QuickFixCmdPost * botright copen 8
 augroup END
+
+" Color
+color darkblue
 
