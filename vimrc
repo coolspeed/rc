@@ -130,12 +130,11 @@ autocmd VimEnter *
 \|endif
 
 " YouCompleteMe
-"autocmd VimEnter *
-"\ if exists('g:ycm_goto_buffer_command')
-"\|  let g:ycm_goto_buffer_command = 'new-tab'
-"\|  nnoremap <F12> :YcmCompleter GoToDefinition<CR>
-"\|endif
-nnoremap <F12> :YcmCompleter GoToDefinitionElseDeclaration<CR>
+autocmd VimEnter *
+\ if exists('g:ycm_goto_buffer_command')
+\|  let g:ycm_goto_buffer_command = 'new-tab'
+\|  nnoremap <F12> :YcmCompleter GoToDefinitionElseDeclaration<CR>
+\|endif
 
 " Explore the directory of the current file by `:E`.
 cabbrev E e %:p:h
@@ -154,3 +153,7 @@ augroup END
 " Color
 color darkblue
 
+" Use ESC to close command-T
+if &term =~ "xterm" || &term =~ "screen"
+    let g:CommandTCancelMap = ['<ESC>', '<C-c>']
+endif
