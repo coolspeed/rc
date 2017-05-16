@@ -154,6 +154,6 @@ augroup END
 color darkblue
 
 " Use ESC to close command-T
-if &term =~ "xterm" || &term =~ "screen"
-    let g:CommandTCancelMap = ['<ESC>', '<C-c>']
-endif
+"if &term =~ "xterm" || &term =~ "screen"
+"    let g:CommandTCancelMap = ['<ESC>', '<C-c>']
+"endif
