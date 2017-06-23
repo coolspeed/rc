@@ -157,3 +157,5 @@ color darkblue
 "if &term =~ "xterm" || &term =~ "screen"
 "    let g:CommandTCancelMap = ['<ESC>', '<C-c>']
 "endif
+
+set noswapfile
