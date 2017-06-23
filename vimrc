@@ -132,7 +132,6 @@ autocmd VimEnter *
 " YouCompleteMe
 autocmd VimEnter *
 \ if exists('g:ycm_goto_buffer_command')
-\|  let g:ycm_goto_buffer_command = 'new-tab'
 \|  nnoremap <F12> :YcmCompleter GoToDefinitionElseDeclaration<CR>
 \|endif
 
