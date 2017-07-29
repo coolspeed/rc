@@ -10,7 +10,6 @@ call plug#begin('~/.vim/plugged')
 
 " Syntax highlighters
 Plug 'plasticboy/vim-markdown'
-Plug 'Jinja'
 Plug 'othree/html5.vim'
 Plug 'stephpy/vim-yaml'
 Plug 'rust-lang/rust.vim'
@@ -27,7 +26,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'w0rp/ale'
 Plug 'vim-airline/vim-airline'
-Plug 'taglist-plus'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'wincent/command-t'
 
