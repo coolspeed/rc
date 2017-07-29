@@ -12,9 +12,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'plasticboy/vim-markdown'
 Plug 'Jinja'
 Plug 'othree/html5.vim'
-if version < 704
-  Plug 'JulesWang/css.vim'
-endif
 Plug 'stephpy/vim-yaml'
 Plug 'rust-lang/rust.vim'
 Plug 'ekalinin/Dockerfile.vim'
