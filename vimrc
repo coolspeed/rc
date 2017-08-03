@@ -30,6 +30,9 @@ Plug 'itchyny/lightline.vim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'wincent/command-t'
 
+" Color themes
+Plug 'joshdick/onedark.vim'
+
 " -----------------------------------------------------------------------------
 call plug#end()
 
@@ -146,7 +149,7 @@ augroup vimrc
 augroup END
 
 " Color
-color darkblue
+colorscheme onedark
 
 " Use ESC to close command-T
 "if &term =~ "xterm" || &term =~ "screen"
