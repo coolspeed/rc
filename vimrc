@@ -28,6 +28,7 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'w0rp/ale'
 "Plug 'vim-airline/vim-airline'
 Plug 'itchyny/lightline.vim'
+Plug 'majutsushi/tagbar'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'wincent/command-t'
 
