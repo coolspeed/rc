@@ -31,6 +31,7 @@ Plug 'w0rp/ale'
 Plug 'vim-airline/vim-airline'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'wincent/command-t'
+Plug 'terryma/vim-multiple-cursors'
 
 " -----------------------------------------------------------------------------
 call plug#end()
