@@ -31,6 +31,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'majutsushi/tagbar'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'wincent/command-t'
+Plug 'terryma/vim-multiple-cursors'
 
 " Color themes
 Plug 'joshdick/onedark.vim'
