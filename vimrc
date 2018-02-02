@@ -11,7 +11,6 @@ call plug#begin('~/.vim/plugged')
 
 " Syntax highlighters
 Plug 'plasticboy/vim-markdown'
-Plug 'Jinja'
 Plug 'othree/html5.vim'
 Plug 'stephpy/vim-yaml'
 Plug 'rust-lang/rust.vim'
