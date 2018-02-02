@@ -3,6 +3,7 @@
 
 " vim:ft=vim:et:ts=2:sw=2:sts=2:
 
+set nocp
 set nu!
 
 call plug#begin('~/.vim/plugged')
