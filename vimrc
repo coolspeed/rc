@@ -32,6 +32,7 @@ Plug 'majutsushi/tagbar'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'wincent/command-t'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'eugen0329/vim-esearch'
 
 " Color themes
 Plug 'joshdick/onedark.vim'
@@ -63,7 +64,7 @@ set fileformat=unix
 set clipboard=unnamed
 
 " Mouse
-set mouse=a
+" set mouse=a
 
 " Make backspace works like most other applications.
 set backspace=2
