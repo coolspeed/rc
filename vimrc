@@ -82,10 +82,10 @@ set ignorecase
 set hlsearch
 highlight Search term=inverse cterm=none ctermbg=cyan
 
-" Keep 80 columns and dense lines.
-set colorcolumn=81
+" Keep 100 columns and dense lines.
+set colorcolumn=101
 highlight ColorColumn term=underline cterm=underline ctermbg=none
-"autocmd BufWinEnter * match Error /\%>80v.\+\|\s\+$\|^\s*\n\+\%$/
+"autocmd BufWinEnter * match Error /\%>100v.\+\|\s\+$\|^\s*\n\+\%$/
 
 " Some additional syntax highlighters.
 au! BufRead,BufNewFile *.wsgi setfiletype python
@@ -97,7 +97,7 @@ au! BufRead,BufNewFile *rc setfiletype conf
 au! BufRead,BufNewFile *.*_t setfiletype jinja
 
 " These languages have their own tab/indent settings.
-au FileType cpp        setl ts=2 sw=2 sts=2
+au FileType cpp        setl ts=4 sw=4 sts=4
 au FileType javascript setl ts=2 sw=2 sts=2
 au FileType ruby       setl ts=2 sw=2 sts=2
 au FileType xml        setl ts=2 sw=2 sts=2
