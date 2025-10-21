@@ -1,83 +1,97 @@
-function git-pull {
-  # Clone a Git repository.  If the repository already exists,
-  # just pull from the remote.
-  SRC="$1"
-  DEST="$2"
-  if [[ ! -d "$DEST" ]]
-  then
-    mkdir -p "$DEST"
-    git clone "$SRC" "$DEST"
+#!/bin/bash
+
+# -- Function definitions --
+
+install_package() {
+  if ! command -v "$1" &> /dev/null; then
+    sudo apt update
+    sudo apt install -y "$1"
+    echo "Installed $1"
   else
-    git -C "$DEST" pull
+    echo "$1 is already installed."
   fi
 }
 
-
-# Authorize the local SSH key for connecting to
-# localhost without password.
-if ! ssh -qo BatchMode=yes localhost true
-then
-  if [[ ! -f ~/.ssh/id_rsa ]]
-  then
-    info "Generating new SSH key..."
-    ssh-keygen -f ~/.ssh/id_rsa -N ''
+install_plugin() {
+  if [[ ! -d ~/.oh-my-zsh/plugins/$1 ]]; then
+    git clone https://github.com/zsh-users/$1 ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/$1
+    echo "Installed $1 plugin"
+  else
+    echo "$1 plugin is already installed."
   fi
-  ssh-keyscan -H localhost 2>/dev/null 1>> ~/.ssh/known_hosts
-  cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-  info "Authorized the SSH key to connect to localhost."
+}
+
+# --- Function calls ---
+
+# Backup .zshrc file
+if [ -f ~/.zshrc ]; then
+  cp ~/.zshrc ~/.zshrc.bak
+  echo "Backed up .zshrc file to ~/.zshrc.bak"
 fi
 
-# Install ZSH and Oh My ZSH!
-if ! executable zsh
-then
-  info "Installing Zsh..."
-  sudo apt-get install -y zsh
-fi
-info "Setting up the Zsh environment..."
-sudo chsh -s "$(which zsh)" "$USER"
-git-pull https://github.com/robbyrussell/oh-my-zsh ~/.oh-my-zsh
-git-pull https://github.com/zsh-users/zsh-syntax-highlighting \
-         ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-git-pull https://github.com/zsh-users/zsh-autosuggestions \
-         ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-git-pull https://github.com/bobthecow/git-flow-completion \
-         ~/.oh-my-zsh/custom/plugins/git-flow-completion
+# Install zsh
+install_package zsh
 
-# Install ripgrep.
-RG_RELEASE="$(curl -s \
-              https://api.github.com/repos/BurntSushi/ripgrep/releases/latest)"
-RG_VERSION="$(echo "$RG_RELEASE" | grep tag_name | cut -d '"' -f4)"
-info "Installing ripgrep-${RG_VERSION}..."
-if executable rg && [[ "$(rg --version)" == "$RG_VERSION" ]]
-then
-  echo "Already up-to-date."
+# Set zsh as default shell
+if [[ "$SHELL" != "/bin/zsh" ]]; then
+  chsh -s $(which zsh)
+  echo "Set zsh as default shell"
+fi
+
+install_package git
+install_package curl
+
+# Install oh-my-zsh
+if [[ ! -d ~/.oh-my-zsh ]]; then
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  echo "Installed oh-my-zsh"
+fi
+
+# Check if fzf is installed
+if ! command -v fzf &> /dev/null; then
+  # If fzf is not installed, install it using git clone
+  echo "Installing fzf..."
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  ~/.fzf/install
+  echo "fzf installation complete."
 else
-  RG_URL="$(echo "$RG_RELEASE" | \
-            grep -e 'browser_download_url.\+x86_64.\+linux' | \
-            cut -d'"' -f4)"
-  RG_ARCHIVE="$(basename "$RG_URL")"
-  pushd /usr/local
-  if [[ ! -f "/usr/local/src/$RG_ARCHIVE" ]]
-  then
-    curl -L "$RG_URL" | sudo tee "src/~$RG_ARCHIVE" > /dev/null
-    sudo mv "src/~$RG_ARCHIVE" "src/$RG_ARCHIVE"
-  fi
-  sudo tar xvzf "src/$RG_ARCHIVE" -C src
-  sudo cp "src/${RG_ARCHIVE%.*.*}/rg" bin/rg
-  popd
-  echo "Installed at $(which rg)."
+  echo "fzf is already installed."
 fi
 
-# Install plugin managers for Vim and tmux.
-info "Setting up the Vim and tmux environment..."
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-git-pull https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# Install autojump
+install_package autojump
 
-# Install Vim and tmux plugins.
-info "Installing plugins for Vim and tmux..."
-vim --noplugin -c PlugInstall -c qa
-stty -F /dev/stdout sane
-TMUX_PLUGIN_MANAGER_PATH=~/.tmux/plugins/ \
-  ~/.tmux/plugins/tpm/scripts/install_plugins.sh
+# Install rip-grep
+install_package ripgrep
+
+# Install fd
+install_package fd-find
+if [[ ! -f /usr/bin/fd ]]; then
+  sudo ln -s $(which fdfind) /usr/bin/fd
+  echo "Made a symbolic link 'fd' to the file: /usr/bin/fdfind"
+fi
+
+# Install jq
+install_package jq
+
+# Install zsh-completions
+install_plugin zsh-completions
+
+# Install zsh-autosuggestions
+install_plugin zsh-autosuggestions
+
+# Install zsh-syntax-highlighting
+install_plugin zsh-syntax-highlighting
+
+# ZSH_THEME theme
+sed -i 's/ZSH_THEME="[^"]*"/ZSH_THEME="duellj"/g' ~/.zshrc
+
+# oh-my-zsh plugins
+sed -i 's/plugins=(.*)/plugins=(git zsh-syntax-highlighting zsh-autosuggestions autojump fzf zsh-completions command-not-found)/g' ~/.zshrc
+
+# Reload zsh settings
+source ~/.zshrc
+echo "Reloaded zsh settings"
+
+echo "All settings completed!"
 
