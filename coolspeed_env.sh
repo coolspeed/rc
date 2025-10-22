@@ -58,8 +58,13 @@ else
   echo "fzf is already installed."
 fi
 
-# Install autojump
-install_package autojump
+# Install zoxide
+if ! command -v zoxide &> /dev/null; then
+  curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+  echo "Installed zoxide"
+else
+  echo "zoxide is already installed."
+fi
 
 # Install rip-grep
 install_package ripgrep
@@ -87,7 +92,13 @@ install_plugin zsh-syntax-highlighting
 sed -i 's/ZSH_THEME="[^"]*"/ZSH_THEME="duellj"/g' ~/.zshrc
 
 # oh-my-zsh plugins
-sed -i 's/plugins=(.*)/plugins=(git zsh-syntax-highlighting zsh-autosuggestions autojump fzf zsh-completions command-not-found)/g' ~/.zshrc
+sed -i 's/plugins=(.*)/plugins=(git zsh-syntax-highlighting zsh-autosuggestions fzf zsh-completions command-not-found)/g' ~/.zshrc
+
+# Initialize zoxide
+if ! grep -q "eval \"\$(zoxide init zsh)\"" ~/.zshrc; then
+  echo 'eval "$(zoxide init zsh)"' >> ~/.zshrc
+  echo "Added zoxide initialization to .zshrc"
+fi
 
 # Reload zsh settings
 source ~/.zshrc
